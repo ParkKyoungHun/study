@@ -16,7 +16,7 @@ public class ArrExam4 {
 		
 		int result = 0;
 		for(int i=initNum; i<=maxNum; i++){
-			result += (i + maxNum);
+			result += i;
 		}
 		System.out.println(result);
 		
