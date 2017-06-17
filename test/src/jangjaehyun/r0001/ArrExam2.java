@@ -12,7 +12,7 @@ public class ArrExam2 {
 		// 다음 반복문에서 스트링배열변수가 가진 모든방의 값을 출력해주세요.
 	
 	public static void main(String[] args)
-	{
+	{ 
 		Scanner scan = new Scanner(System.in);
 		System.out.println("최소값을 입력하세요");
 		String initNum = scan.nextLine();
