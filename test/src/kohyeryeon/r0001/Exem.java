@@ -12,7 +12,7 @@ public class Exem {
 		String str2 = scan.nextLine();
 		int b = Integer.parseInt(str2);
 		
-		for(int i=a;i>b;i--){
+		for(int i=a;i<=b;i++){
 			if(i==b){
 				System.out.println(i);
 			}else{
