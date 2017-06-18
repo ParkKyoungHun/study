@@ -8,6 +8,7 @@ public class ArrExam {
 	public static void main(String[] args){
 		Scanner scan = new Scanner(System.in);
 		int[] a = new int[10];
+		
 		String[] arrStr = new String[10];
 		for(int i = 0; i<=9; i++){
 		String str = scan.nextLine();
