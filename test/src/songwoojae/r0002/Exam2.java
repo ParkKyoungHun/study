@@ -27,9 +27,9 @@ public class Exam2 {
 	public static void main(String[] args) {
 		Exam2 e2 = new Exam2();
 		System.out.println("초기값 입력해!");
-		int initNum = e2.getIntFormString();
+		int initNum = e2.getIntformString();
 		System.out.println("맥스값 입력해!");
-		int maxNum = e2.getIntFormString();
+		int maxNum = e2.getIntformString();
 		String[] arrStr = new String[maxNum - initNum + 1];
 
 		for (int i = initNum; i <= maxNum; i++) {
