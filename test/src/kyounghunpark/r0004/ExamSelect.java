@@ -3,7 +3,10 @@ package kyounghunpark.r0004;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ExamSelect {
 	Connection con;
@@ -11,17 +14,27 @@ public class ExamSelect {
 	ExamSelect(){
 		try{
 			con = DBConn.getCon();
+			System.out.println(con);
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
-	public void selectUserInfo() throws SQLException{
-		String sql = "select * from user_info";
+	public ArrayList<HashMap> selectUserInfo() throws SQLException{
+		ArrayList<HashMap> userInfoList = new ArrayList<HashMap>();
+		String sql = "select user_num, user_id, user_pwd, user_name, class_number, age from user_info";
 		ps = con.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int colCnt = rsmd.getColumnCount();
 		while(rs.next()){
-			System.out.println(rs.getString("user_name"));
+			HashMap hm = new HashMap();
+			for(int i=1;i<=colCnt;i++){
+				String name = rsmd.getColumnLabel(i);
+				hm.put(name, rs.getString(name));
+			}
+			userInfoList.add(hm);
 		}
+		return userInfoList;
 	}
 	
 	public void deleteUserInfo(){
@@ -45,9 +58,11 @@ public class ExamSelect {
 	public static void main(String[] args) {
 		try {
 			ExamSelect es = new ExamSelect();
-			es.updateUserInfo();
-			es.selectUserInfo();
-			DBConn.closeCon();
+			ArrayList<HashMap> userInfoList = es.selectUserInfo();
+			for(HashMap hm : userInfoList){
+				System.out.println(hm);
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
