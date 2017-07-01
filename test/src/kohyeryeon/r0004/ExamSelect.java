@@ -40,11 +40,17 @@ public class ExamSelect {
 	public void getInsert(){
 		try{
 			con = DBConn.getCon();
-			String sql = "insert into user_info(user_id,user_pwd,user_name,user_age,class_number)";
-			sql += " values('red','red','홍길동','26',5)";
+			String sql = "insert into user(id, pwd, name, age)";
+			sql += " values('red','red','홍길동','26')";
 			ps = con.prepareStatement(sql);
-			int result = ps.executeUpdate();
-			System.out.println(result + "개 가 등록됬어");
+			
+			ResultSet rs = ps.executeQuery();
+			ResultSetMetaData rsmd = rs.getMetaData();
+			String name = rsmd.getColumnName(1);
+			while(rs.next()){
+				System.out.println(name + "," + rsmd.getColumnCount() + "," + rs.getString(name)+"개 가 등록됬어");
+			}
+			System.out.println("잘실행됫엉!");
 		}catch(Exception e){
 			e.printStackTrace();
 			System.out.println("등록되지 않았는걸!");
@@ -92,7 +98,7 @@ public void getUpdate(){
 //		es.getInsert();
 //		es.getUpdate();
 //		es.getDelete();
-		es.getSelect();
+		es.getInsert();
 		
 		System.out.println("잘됫는지는 모르겟지만 작업종료!");
 	}
