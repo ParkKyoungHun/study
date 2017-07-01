@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ExamSql {
 	Connection con;
@@ -18,19 +20,22 @@ public class ExamSql {
 		}
 	}
 
-	public void selectUserInfo() throws SQLException {
+	public ArrayList<HashMap> selectUserInfo() throws SQLException {
+		ArrayList<HashMap> userInfoList = new ArrayList<HashMap>();
 		String sql = "select * from user_info";
 		ps = con.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		ResultSetMetaData rsmd = rs.getMetaData();
 		int colcnt = rsmd.getColumnCount();
 		while (rs.next()) {
+			HashMap hm = new HashMap();
 			for(int i=1;i<=colcnt;i++){
 				String name = rsmd.getColumnLabel(i);
-				System.out.print(rs.getString(name)+",");
+				hm.put(name, rs.getString(name));
 			}
-			System.out.println();
+			userInfoList.add(hm);
 		}
+		return userInfoList;
 	}
 
 	public void deleteUserInfo() {
@@ -53,13 +58,17 @@ public class ExamSql {
 
 		try {
 			ExamSql es = new ExamSql();
-			es.selectUserInfo();
+			ArrayList<HashMap> userInfoList = es.selectUserInfo();
+			for(HashMap hm : userInfoList){
+				System.out.println(hm);
+			}
+//			es.selectUserInfo();
 //			es.updateUserInfo();
 			DBConn.closeCon();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
 	}
 }
