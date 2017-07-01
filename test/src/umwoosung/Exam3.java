@@ -1,4 +1,4 @@
-package umwoosung.r0002;
+package umwoosung;
 
 import java.util.Scanner;
 
