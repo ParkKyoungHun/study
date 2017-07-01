@@ -43,7 +43,7 @@ public class ExamSelect3 {
 //		ExamSelect3 es = new ExamSelect3();
 //		String sql = "delete from user_info where user_num=7;";
 //		es.connectionDb(sql);
-//		int result = ps.executeUpdate();
+//		int result = es.ps.executeUpdate();
 //		System.out.println(result + "갯수 만큼 삭제 되었습니다.");
 	}
 
