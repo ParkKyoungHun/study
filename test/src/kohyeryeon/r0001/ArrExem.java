@@ -20,8 +20,8 @@ public class ArrExem {
 		
 		String[] arrStr = new String[(num2-num1)+1];
 		
-		for(int i=num1;i<=num2;i++){
-			arrStr[i-num1] = scan.nextLine();
+		for(int i=0;i<=(num2-num1);i++){
+			arrStr[i] = scan.nextLine();
 		}
 		
 		for(int i=0;i<arrStr.length;i++){  //arrStr.length 방의 개수!
